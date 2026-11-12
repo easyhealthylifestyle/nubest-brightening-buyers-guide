@@ -1,0 +1,152 @@
+/* ==========================================================
+   Label Check: choosing a skin brightening supplement
+   Idea: a consumer-advocate checklist. Deep teal, lemon for
+   confirmed items, lilac for open questions.
+   ========================================================== */
+
+:root {
+  --bg: #fbfcfc;
+  --panel: #ffffff;
+  --teal: #0f4c5c;
+  --teal-2: #1d6b7e;
+  --text: #24353b;
+  --muted: #5b6b70;
+  --lemon: #f4e04d;
+  --lemon-soft: #fbf5c8;
+  --lilac: #e9e3f5;
+  --lilac-ink: #4b3a78;
+  --line: #d8e1e3;
+
+  --display: "Red Hat Display", "Segoe UI", system-ui, sans-serif;
+  --read: "Newsreader", Georgia, serif;
+
+  --z-1: 0.875rem;
+  --z0: 1.0625rem;
+  --z1: 1.25rem;
+  --z2: 1.6rem;
+  --z3: 2.3rem;
+  --z4: clamp(2.6rem, 6.5vw, 4.6rem);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1a1e;
+    --panel: #142429;
+    --teal: #8fd0de;
+    --teal-2: #b3e2ec;
+    --text: #d8e4e7;
+    --muted: #9fb2b7;
+    --lemon: #e9d443;
+    --lemon-soft: #3a3714;
+    --lilac: #2c2540;
+    --lilac-ink: #cfc2f1;
+    --line: #29393e;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--read); font-size: var(--z0); line-height: 1.7; }
+
+h1, h2, h3, legend, dt { font-family: var(--display); color: var(--teal); }
+h1, h2, h3 { line-height: 1.1; margin: 0 0 0.5em; }
+h1 { font-size: var(--z4); font-weight: 900; letter-spacing: -0.03em; max-width: 16ch; }
+h2 { font-size: var(--z3); font-weight: 900; letter-spacing: -0.015em; }
+h3 { font-size: var(--z1); font-weight: 700; }
+.h-small { font-size: var(--z2); }
+
+p { margin: 0 0 1em; max-width: 66ch; }
+a { color: var(--teal-2); text-underline-offset: 0.18em; }
+a:hover { color: var(--teal); }
+:focus-visible { outline: 3px solid var(--lemon); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { width: min(100% - 3rem, 70rem); margin-inline: auto; }
+.skip-link { position: absolute; left: -999px; top: 0.5rem; background: var(--teal); color: var(--bg); padding: 0.5rem 1rem; z-index: 20; }
+.skip-link:focus { left: 0.5rem; }
+
+/* Header */
+.hdr { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
+.hdr-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem 1.5rem; padding-block: 0.8rem; }
+.hdr-name { font-family: var(--display); font-weight: 900; color: var(--teal); font-size: var(--z1); }
+.hdr ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+.hdr nav a { font-family: var(--display); font-weight: 500; font-size: var(--z-1); color: var(--muted); text-decoration: none; }
+.hdr nav a:hover { color: var(--teal); }
+
+/* Hero */
+.hero { padding-block: clamp(3rem, 8vw, 6rem); }
+.lede { font-size: var(--z1); color: var(--muted); }
+.btn { display: inline-block; margin-top: 0.5rem; padding: 0.85rem 1.6rem; background: var(--teal); color: var(--bg); font-family: var(--display); font-weight: 700; text-decoration: none; border-radius: 8px; }
+.btn:hover { background: var(--teal-2); color: var(--bg); }
+
+.section { padding-block: clamp(3rem, 7vw, 5rem); border-top: 1px solid var(--line); }
+.intro { color: var(--muted); }
+
+/* Checker */
+.check-section { background: var(--panel); }
+.check-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 3rem; align-items: start; }
+.meter-wrap { margin-top: 1.5rem; }
+.meter { height: 14px; border-radius: 999px; background: var(--lilac); overflow: hidden; }
+.meter span { display: block; height: 100%; width: 0; background: var(--lemon); transition: width 0.3s ease; }
+.meter-text { font-family: var(--display); font-weight: 700; color: var(--teal); margin-top: 0.5rem; }
+.questions { margin-top: 1.5rem; background: var(--lilac); color: var(--lilac-ink); border-radius: 12px; padding: 1.25rem 1.4rem; }
+.questions h3 { color: var(--lilac-ink); margin-bottom: 0.4rem; }
+.questions ul { margin: 0; padding-left: 1.1rem; }
+.questions li { margin-bottom: 0.35rem; }
+.questions.done { background: var(--lemon-soft); color: var(--text); }
+.questions.done h3 { color: var(--teal); }
+
+.label-card { border: 3px solid var(--teal); border-radius: 14px; padding: 1.25rem 1.5rem 1.5rem; background: var(--bg); }
+.label-card fieldset { border: 0; padding: 0; margin: 0 0 1rem; }
+.label-card legend { font-weight: 900; font-size: var(--z1); padding: 0; margin-bottom: 0.25rem; }
+.label-card label {
+  display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.7rem; align-items: start;
+  padding: 0.6rem 0.5rem; border-top: 1px solid var(--line); cursor: pointer; border-radius: 6px;
+}
+.label-card label:hover { background: var(--lemon-soft); }
+.label-card input { width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; accent-color: var(--teal); }
+.label-card label.is-on { background: var(--lemon-soft); }
+.clear { appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--muted); text-decoration: underline; cursor: pointer; }
+
+/* Ingredients */
+.ing-list { margin: 1.5rem 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
+.ing-list div { padding: 1rem 0; border-top: 2px solid var(--teal); }
+.ing-list dt { font-weight: 700; font-size: var(--z1); }
+.ing-list dd { margin: 0.25rem 0 0; }
+
+/* Habits */
+.habits { background: var(--lemon-soft); }
+.habit-list { list-style: none; margin: 1rem 0 0; padding: 0; max-width: 52rem; }
+.habit-list li { padding: 0.9rem 0; border-top: 1px solid rgba(15, 76, 92, 0.2); }
+.habit-list strong { font-family: var(--display); color: var(--teal); }
+
+/* NuBest */
+.nb-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+.nb-facts { margin: 0; border: 2px solid var(--teal); border-radius: 12px; overflow: hidden; }
+.nb-facts div { display: grid; grid-template-columns: 9.5rem 1fr; gap: 1rem; padding: 0.75rem 1rem; border-top: 1px solid var(--line); }
+.nb-facts div:first-child { border-top: 0; }
+.nb-facts dt { font-weight: 700; font-size: var(--z-1); }
+.nb-facts dd { margin: 0; }
+.small { font-size: var(--z-1); color: var(--muted); }
+
+/* Caution */
+.caution { background: var(--lilac); }
+.caution h2, .caution p { color: var(--lilac-ink); }
+
+/* Footer */
+.ftr { padding-block: 2.5rem; font-size: var(--z-1); color: var(--muted); border-top: 1px solid var(--line); }
+.ftr p { max-width: 85ch; }
+
+@media (max-width: 880px) {
+  .check-grid, .nb-grid { grid-template-columns: 1fr; }
+  .ing-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .wrap { width: min(100% - 2rem, 70rem); }
+  .nb-facts div { grid-template-columns: 1fr; gap: 0.15rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .meter span { transition: none; }
+}
